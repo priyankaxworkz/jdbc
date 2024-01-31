@@ -5,14 +5,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.xworkz.bottle.constatnts.BottleConstant;
+import com.xworkz.bottle.constatnts.ConnectionData;
 
 
 public class BottleRunner {
 public static void main(String[] args) {
 	
-	try(Connection connection=DriverManager.getConnection(BottleConstant.URL.getValue(),
-			BottleConstant.USERNAME.getValue(),BottleConstant.PASSWORD.getValue());
+	try(Connection connection=DriverManager.getConnection(ConnectionData.URL.getValue(),
+			ConnectionData.USERNAME.getValue(),ConnectionData.PASSWORD.getValue());
 			Statement statement=connection.createStatement()){
 		
 		System.out.println("class is connected");
