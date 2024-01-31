@@ -7,8 +7,7 @@ import java.sql.Statement;
 
 import com.xworkz.book.constant.ConnectionData;
 
-public class BooksRunner {
-
+public class GeographyRunner {
 	public static void main(String[] args) {
 		
 		try(Connection connection=DriverManager.getConnection(ConnectionData.URL.getValue(),
@@ -16,8 +15,8 @@ public class BooksRunner {
 				Statement statement=connection.createStatement()){
 			System.out.println("class is connected");
 			
-			String query="insert into book_details values('haripotter',350)";
-			String query1="update book_details set book_name='andthen there were none' where book_name='haripotter'";
+			String query="insert into book_details values('wingsoffire',250)";
+			String query1="update book_details set book_name='my murder' where book_name='wingsoffire'";
 			
 			statement.execute(query);
 			int rs=statement.executeUpdate(query1);
@@ -34,4 +33,6 @@ public class BooksRunner {
 		exception.printStackTrace();
 	}
 	}
-}
+	}
+
+
