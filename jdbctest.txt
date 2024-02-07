@@ -1,0 +1,95 @@
+1.  
+JDBC->java database connectivity it is a connection between two apllication.
+it is used to connect the two application java and database.
+flow daigram:-
+two connect the two apllication java and database we need api called jdbcapi and it does not provide any implemntation particular wander will
+provide the jar files and jarfiles implements the application programming interface.
+
+
+2.
+*load or register the jar files.
+*connection between two apllication java and database.
+*create a statement.
+*excute the statement.
+*get the result from the database.
+*handling the exception.
+
+3.
+statement it will compile multiple times and excute multiple times.
+Syntax:-
+Statment statement=connection.createStatement();
+statement.excute(query);
+
+PreparedStatement it will compile only one time and excute n number of time.
+Syntax:-
+PreparedStatement prepareStatement=connection.prepareStatement(query);
+prepareStatement.excuteUpdate();
+
+4.
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class Question{
+
+public static void main(String[] args)throws Exception{
+
+Class.forName("com.mysql.cj.jdbc.Driver");
+
+Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/databasename");
+
+if(con!=null){
+System.out.println("connection is ok");
+con.close();
+}
+else{
+System.out.println("connection is not ok");
+
+}
+
+}
+}
+
+5.
+public enum ConnectionData{
+
+URL("jdbc:mysql://localhost:3306/jdbc"),USERNAME("root"),PASSWORD("root");
+
+private String value;
+
+private ConnectionData(String value){
+this.value=value;
+}
+
+public String getValue(){
+return value
+
+}
+}
+
+public class jdbctable{
+
+public static void main(String[] args){
+
+String query="delete from jdbc_table where column_name=?;
+try(Connection connection=DriverManager.getConnection(ConnectionData.URL.getValue(),ConnectionData.USERNAME.getValue(),ConnectionData.PASSWORD.getValue());
+    PreparedStatement preparestatement=connection.preparestatement()){
+	
+	preparestatement.setString(1,"xxx");
+	preparestatement.excuteUpdate(query);
+	}
+	
+	catch(SQLException e){
+	e.printStackTrace();
+	}
+}
+
+6.
+public enum ConnectionData{
+
+URL("jdbc:mysql://localhost:3306/product"),USERNAME("root"),PASSWORD("root");
+
+private String value;
+
+private String}
+
+
