@@ -1,0 +1,43 @@
+package com.xworkz.shop.runner;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceException;
+import javax.persistence.Query;
+
+public class SilkRunner {
+public static void main(String[] args) {
+	
+	EntityManagerFactory entityManagerFactory=Persistence.createEntityManagerFactory("com.xworkz");
+	
+	EntityManager entityManager=entityManagerFactory.createEntityManager();
+	
+	EntityTransaction entityTransaction=entityManager.getTransaction();
+	System.out.println("connected");
+	
+	try {
+		entityTransaction.begin();
+		
+		Query query=entityManager.createNamedQuery("findPriceByLocation");
+		query.setParameter("location","udupi");
+	Object object=query.getSingleResult();
+		int price=(Integer) object;
+		entityTransaction.commit();
+		System.out.println("cloth price is:"+price);
+	}
+	
+	catch(PersistenceException exception) {
+		if(entityTransaction.isActive()) {
+			entityTransaction.rollback();
+			System.out.println("not connected");
+		}
+	}
+	finally {
+		entityManager.close();
+		entityManagerFactory.close();
+		System.out.println("close the connection");
+	}
+}
+}
